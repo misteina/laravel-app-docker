@@ -11,5 +11,5 @@
 |
 */
 
-Route::post('/users', 'createUser');
-Route::get('/users/{id}', 'getUser');
+Route::post('/users', 'CreateUser');
+Route::get('/users/{id}', 'GetUser');
