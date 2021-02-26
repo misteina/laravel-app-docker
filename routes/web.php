@@ -11,6 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::post('/users', 'createUser');
+Route::get('/users/{id}', 'getUser');
