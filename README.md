@@ -1,0 +1,1 @@
+I am assuming the technical team will know how to run the application using `docker-compose` or feel free to reach out to me for the guide. :-)
