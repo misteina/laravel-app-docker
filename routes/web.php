@@ -11,5 +11,10 @@
 |
 */
 
-Route::post('/users', 'CreateUser');
-Route::get('/users/{id}', 'GetUser');
+Route::get('/', function () {
+    return view('index');
+});
+
+Route::resource('users', 'UserController')->only([
+    'store', 'show', 'destroy'
+]);
