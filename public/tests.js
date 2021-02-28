@@ -44,7 +44,7 @@ window.onload = async function () {
 
 
 
-    document.write('Get user using JWT authentication...<br><b>Request:</b> GET /users/{id}<br>');
+    document.write('Get user...<br><b>Request:</b> GET /users/{id}<br>');
 
     await fetch(
         'http://localhost:8080/users/1',
