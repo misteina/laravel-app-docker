@@ -40,7 +40,7 @@ class UserController extends Controller
 
                 return response()->json(
                     ['status' => 200, 'type' => 'success', 'message' => 'New user created']
-                )->cookie('auth', $token);
+                );
             } else {
                 return ['status' => 406, 'type' => 'error', 'message' => 'Request failed'];
             }
