@@ -7,7 +7,7 @@ window.onload = async function () {
     document.write('Reset database...<br><b>Request:</b> DELETE /users/1<br>');
 
     await fetch(
-        'http://localhost:8080/users/1',
+        'http://localhost:8080/api/users/1',
         { 
             method: 'DELETE',
             headers: {
@@ -26,7 +26,7 @@ window.onload = async function () {
     document.write('Add user...<br><b>Request:</b> POST /users<br>');
 
     await fetch(
-        'http://localhost:8080/users',
+        'http://localhost:8080/api/users',
         {
             method: 'POST',
             headers: {
@@ -47,7 +47,7 @@ window.onload = async function () {
     document.write('Get user...<br><b>Request:</b> GET /users/{id}<br>');
 
     await fetch(
-        'http://localhost:8080/users/1',
+        'http://localhost:8080/api/users/1',
         {
             method: 'GET'
         }

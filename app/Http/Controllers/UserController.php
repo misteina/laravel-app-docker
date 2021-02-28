@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use Illuminate\Support\Facades\Auth;
+use \Firebase\JWT\JWT;
+//use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -12,7 +13,7 @@ class UserController extends Controller
 {
 
     public function __construct() {
-        $this->middleware('auth:web', ['except' => ['store', 'destroy']]);
+        $this->middleware('jwt', ['except' => ['store', 'destroy']]);
     }
 
 
@@ -36,11 +37,11 @@ class UserController extends Controller
 
             if ($user){
 
-                $token = Auth::login($user);
+                $jwt = JWT::encode(array("uid" => $user->id), env('JWT_SECRET', 'e8it8u'), 'HS256');
 
                 return response()->json(
                     ['status' => 200, 'type' => 'success', 'message' => 'New user created']
-                );
+                )->cookie('auth', $jwt)->cookie('id', $user->id);
             } else {
                 return ['status' => 406, 'type' => 'error', 'message' => 'Request failed'];
             }
@@ -50,12 +51,12 @@ class UserController extends Controller
     }
 
 
-    // Get user using JWT authentication
+    // Get user
 
 
     public function show($id)
     {
-        $user = Auth::user();
+        $user = User::find($id);
 
         if ($user->id == $id){
             return [
@@ -80,7 +81,6 @@ class UserController extends Controller
 
     public function destroy($id)
     {
-        Auth::logout();
 
         User::query()->truncate();
 
